@@ -9,6 +9,4 @@ use App\Contracts\Dao\User\UserDaoInterface;
  */
 class UserDao implements UserDaoInterface
 {
-
 }
-

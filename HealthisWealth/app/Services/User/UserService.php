@@ -14,10 +14,9 @@ class UserService implements UserServiceInterface
      * user dao
      */
     private $userDao;
-    public function __construct(UserDaoInterface $userDao)
+    public function __construct(UserDaoInterface $userDaoInterface)
     {
-        $this->userDao = $userDao;
+        $this->userDao = $userDaoInterface;
     }
 
 }
-?>
