@@ -51,7 +51,7 @@ class RegisterController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
-     *
+     *............
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
@@ -64,6 +64,7 @@ class RegisterController extends Controller
             'profile'=>"required|mimes:jpeg,bmp,png",
             'dob'=>['required'],
             'address' =>['required','string','min:8'],
+
         ]);
     }
 
