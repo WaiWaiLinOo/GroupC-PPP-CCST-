@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('Frontend_ui.dashboard');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/register-view', [App\Http\Controllers\Auth\RegisterController::class , 'registerView'])->name('registerView');
+Route::post('/saveUser', [App\Http\Controllers\Auth\RegisterController::class , 'create'])->name('createUser');
+
+//Route::resource('users', App\Http\Controllers\Auth\RegisterController::class);
+//
+//Route::post('users/create  ', function () {
+//    return view('Frontend_ui.dashboard');
+//});

@@ -9,10 +9,11 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script src="{{ asset('js/library/jquery.3.6.0.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
+    <link href="{{ asset('css/library/bootstrap5.0.2.min.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <section class="header">
-        <div class="container">
             <div class="header-ttl clearfix">
               <div class="logo">
                 <h1><a href="index.html">Health is Wealth</a></h1>
@@ -23,12 +24,11 @@
                   <li class="about"><a href="">ABOUT US</a></li>
                   <li class="product"><a href="">OUR POST</a></li>
                   <li class="contact"><a href="">CONTACT US</a></li>
-                  <li class="service"><a href="">Register</a></li>
+                  <li class="service"><a href="{{route('registerView')}}">Register</a></li>
                 </ul>
                </div>
 
               </div>
-            </div>
             <div class="logo-img">
                 <img src="{{asset('img/health.jpg')}}"  alt="">
             </div>

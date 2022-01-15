@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 /**
  * Interface for Data Accessing Object of student
  */
-interface UserServiceInterface
+interface AuthServiceInterface
 {
-
+    public function saveUser(Request $request);
 }

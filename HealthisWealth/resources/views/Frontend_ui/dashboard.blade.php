@@ -1,3 +1,4 @@
-@extends('Frontend_ui.layout.app')
+@extends('Frontend_ui.layouts.app')
 @section('content')
+
 @endsection
