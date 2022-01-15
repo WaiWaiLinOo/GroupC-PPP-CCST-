@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Contracts\Services\User\AuthServiceInterface;
 use App\Contracts\Services\User\UserServiceInterface;
+use App\Http\Requests\UserCreateRequest;
+
 
 class RegisterController extends Controller
 {
@@ -61,36 +63,21 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'profile'=>"required|mimes:jpeg,bmp,png",
             'dob'=>['required'],
-            'address' =>['required','string','min:20'],
+            'address' =>['required','string','min:8'],
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(Request $request)
+    /* Save user data in database */
+    protected function create(UserCreateRequest $request)
     {
-
-        $this->authInterface->saveUser($request);
+        $validated = $request->validated();
+        $this->authInterface->saveUser($request,$validated);
         return view('Frontend_ui.dashboard');
-
-        //$user = new User();
-        //$user = $request->all();
-        //if ($profile = $request->file('profile')) {
-        //    $destinationPath = 'image/';
-        //    $profileImage = date('YmdHis') . "." . $profile->getClientOriginalExtension();
-        //    $profile->move($destinationPath, $profileImage);
-        //    $user['profile'] = "$profileImage";
-        //}
-        //User::create($user);
-
     }
 
+    /*View Register page*/
     protected function registerView(){
-        return view('Frontend_ui.register');
+        return view('auth.register');
     }
 
 

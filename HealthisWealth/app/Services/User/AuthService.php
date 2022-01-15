@@ -19,7 +19,7 @@ class AuthService implements AuthServiceInterface
     {
         $this->authDao = $authDaoInterface;
     }
-
+    /*To save user*/
     public function saveUser(Request $request){
         return $this->authDao->saveUser($request);
     }

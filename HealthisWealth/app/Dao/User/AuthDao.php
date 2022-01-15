@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Dao\User;
-
-
-
 use App\Models\User\User;
 use Illuminate\Http\Request;
+use GuzzleHttp\Promise\Create;
+use Illuminate\Support\Facades\Hash;
 use App\Contracts\Dao\User\AuthDaoInterface;
 
 /**
@@ -15,22 +14,25 @@ class AuthDao implements AuthDaoInterface
 {
     public function saveUser(Request $request)
     {
-        $user = $request->all();
         if ($profile = $request->file('profile')) {
-            //$destinationPath = 'image/';
-            $profileImage = date('YmdHis') . "." . $profile->getClientOriginalExtension();
-            //$profile->move(public_path('userProfile'),$profileImage);
-            $profile->move('public/userProfile/', $profileImage);
-            $user['profile'] = "$profileImage";
+            $name = time().'_'.$request->file('profile')->getClientOriginalName();
+            $request->file('profile')->store('public/images');
+            $user['profile'] = "$name";
         }
         if ($certificate = $request->file('certificate')) {
-            //$destinationPath = 'image/';
-
-            $certificateImage = date('YmdHis') . "." . $profile->getClientOriginalExtension();
-            $certificate->move(public_path('userCertificate'),$certificateImage);
-            $user['certificate'] = "$certificateImage";
+            $certificate = time().'_'.$request->file('certificate')->getClientOriginalName();
+            $request->file('profile')->store('public/images');
+            $user['certificate'] = "$certificate";
         }
-        User::create($user);
+        return User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request['password']),
+            'profile' => $name,
+            'certificate'=>$certificate,
+            'dob' =>$request->dob,
+            'address'=>$request->address
+        ]);
 
     }
 

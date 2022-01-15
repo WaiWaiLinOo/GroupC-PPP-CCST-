@@ -1,77 +1,59 @@
-@extends('layouts.app')
-
+@extends('Frontend_ui.layouts.app')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <div class="adduser">
+        <div class="cardHeader">Add User</div>
+        <form method="POST" action="{{ route('createUser') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <input type="text" placeholder="Name" class="form-control" name="name" id="name"
+                    value="{{ old('name') }}" autofocus>
+                @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
             </div>
-        </div>
+            <div class="form-group">
+
+                <input type="email" placeholder="Email" class="form-control" value="{{ old('email') }}" name="email"
+                    id="email">
+                @if ($errors->has('email'))
+                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" class="form-control" name="password"
+                    value="{{ old('password') }}" id="password">
+                @if ($errors->has('password'))
+                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                (<small class="text-danger">* jpeg|png|gif|jpg</small>)
+                <input type="file" placeholder="User Profile" class="form-control" value="{{ old('profile') }}"
+                    name="profile" id="profile" accept="image/png, image/gif, image/jpeg">
+                @if ($errors->has('profile'))
+                    <span class="text-danger">{{ $errors->first('profile') }}</span>
+                @endif
+            </div>
+            <label for="text" class="form-label">*option(if you have certificate)</label>
+
+            <div class="form-group">
+                <input type="file" placeholder="Certificate" class="form-control" id="certificate" name="certificate">
+            </div>
+            <div class="form-group">
+                <input type="date" placeholder="Date Of Birth" class="form-control" id="dob" name="dob"
+                    value="{{ old('dob') }}">
+                @if ($errors->has('dob'))
+                    <span class="text-danger">{{ $errors->first('dob') }}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                <input type="address" placeholder="Address" class="form-control" id="address" name="address"
+                    value="{{ old('address') }}">
+                @if ($errors->has('address'))
+                    <span class="text-danger">{{ $errors->first('address') }}</span>
+                @endif
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
     </div>
-</div>
 @endsection

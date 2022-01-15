@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Frontend</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/library/fontawesome.all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script src="{{ asset('js/library/jquery.3.6.0.js') }}"></script>
@@ -24,7 +25,8 @@
                   <li class="about"><a href="">ABOUT US</a></li>
                   <li class="product"><a href="">OUR POST</a></li>
                   <li class="contact"><a href="">CONTACT US</a></li>
-                  <li class="service"><a href="{{route('registerView')}}">Register</a></li>
+                  {{--<li class="service"><a href="{{route('registerView')}}">Register</a></li>--}}
+
                 </ul>
                </div>
 

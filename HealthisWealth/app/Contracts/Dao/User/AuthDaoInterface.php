@@ -9,5 +9,6 @@ use Illuminate\Http\Request;
  */
 interface AuthDaoInterface
 {
+    /* To save user*/
     public function saveUser(Request $request);
 }

@@ -14,18 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Frontend_ui.dashboard');
-});
+//Route::get('/', function () {
+//    return view('Frontend_ui.dashboard');
+//});
 
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//Route::resource('create', App\Http\Controllers\Auth\RegisterController::class);
 Route::get('/register-view', [App\Http\Controllers\Auth\RegisterController::class , 'registerView'])->name('registerView');
 Route::post('/saveUser', [App\Http\Controllers\Auth\RegisterController::class , 'create'])->name('createUser');
+Route::get('/', function () {
+    return view('home');
+});
 
-//Route::resource('users', App\Http\Controllers\Auth\RegisterController::class);
-//
-//Route::post('users/create  ', function () {
-//    return view('Frontend_ui.dashboard');
-//});
+Auth::routes();
+
+//Route::get('/home', [HomeController::class, 'index'])->name('home');

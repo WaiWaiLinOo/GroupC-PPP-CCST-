@@ -101,3 +101,41 @@ body {
     list-style-type: none;
 
 }
+
+form{
+    width: 500px;
+    margin: 0 auto;
+}
+form div{
+    margin: 25px 0px;
+}
+form div label{
+    margin-top: 0px;
+}
+form button{
+    width: 500px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+.card{
+    width: 700px;
+    margin: 0 auto;
+    background-color: #F8F4F4;
+}
+.cardHeader{
+    background-image: linear-gradient(to right top, #5890e3, #407be1, #2f65dc, #2b4cd4, #352fc9);
+    padding: 10px 0;
+    border: 1px solid rgb(124, 124, 206);
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-left: 10px;
+}
+.adduser{
+    width: 700px;
+    margin: 0 auto;
+    background-color: #F8F4F4;
+    border-radius: 5px;
+    border: 1px solid #F8F4F4;
+    margin-bottom: 40px;
+}
