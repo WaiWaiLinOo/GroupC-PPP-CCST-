@@ -73,33 +73,19 @@ class RegisterController extends Controller
      */
     protected function create(Request $request)
     {
-        dd($request);
-        //$this->authInterface->saveUser($request);
-        //return view('Frontend_ui.dashboard');
-        dd($request->file('profile'));
-        if($request->file('profile')){
-            $fileName = time().'_'.$request->profile->getClientOriginalName();
-            $filePath = $request->file('profile')->storeAs('userProfile',$fileName,'public');
-            $path = '/storage/'.$filePath;
-        }
 
-        if($request->file('certificate')){
-            $fileName = time().'_'.$request->certificate->getClientOriginalName();
-            $filePath = $request->file('certificate')->storeAs('userCertificate',$fileName,'public');
-            $certipath = '/storage/'.$filePath;
-        }
-        else{
-            $certipath = '';
-        }
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->name;
-        $user->password = $request->name;
-        $user->profile = $path;
-        $user->certificate = $certipath;
-        $user->dob = $request->dob;
-        $user->address = $request->address;
-        $user->save();
+        $this->authInterface->saveUser($request);
+        return view('Frontend_ui.dashboard');
+
+        //$user = new User();
+        //$user = $request->all();
+        //if ($profile = $request->file('profile')) {
+        //    $destinationPath = 'image/';
+        //    $profileImage = date('YmdHis') . "." . $profile->getClientOriginalExtension();
+        //    $profile->move($destinationPath, $profileImage);
+        //    $user['profile'] = "$profileImage";
+        //}
+        //User::create($user);
 
     }
 
